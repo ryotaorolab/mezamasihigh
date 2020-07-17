@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".changetime"></activity>
+        <activity android:name=".ChangeTimeActivity"></activity>
         <activity android:name=".AlarmActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
