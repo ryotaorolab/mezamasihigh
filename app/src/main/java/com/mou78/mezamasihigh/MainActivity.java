@@ -12,13 +12,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
 
-    //時間を設定する画面に移動
-    public void changebutton(View v){
-        Intent intent = new Intent(this, ChangeTimeActivity.class);
-        startActivity(intent);
+    // SetTimeActivityでアラームを設定する
+    public  void setTime(View view) {
+        Intent intent = new Intent(this, )
     }
+
 }
