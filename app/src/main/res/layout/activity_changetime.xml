@@ -7,7 +7,7 @@
     tools:context=".ChangeTimeActivity">
 
     <TimePicker
-        android:id="@+id/change"
+        android:id="@+id/timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="35dp"
-        android:onClick="select"
+        android:onClick="settimer"
         android:text="決定"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

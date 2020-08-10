@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00FFFFFF"
-    android:onClick="changebutton"
     tools:context=".MainActivity">
 
     <TextView
@@ -24,19 +23,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="73dp"
-        android:layout_marginTop="251dp"
+        android:layout_marginTop="299dp"
         android:layout_marginEnd="73dp"
-        android:layout_marginBottom="252dp"
-        android:onClick="changebutton"
+        android:onClick="setTime"
         android:text="目覚ましの時間を変更"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/switch2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="31dp"
@@ -62,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="11dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="14dp"
         android:text="アラームをオンにする"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/switch2"
