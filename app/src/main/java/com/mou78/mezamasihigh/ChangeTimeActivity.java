@@ -14,17 +14,18 @@ import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.view.View;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.sql.Time;
 import java.util.Calendar;
 
 public class ChangeTimeActivity extends AppCompatActivity {
-
     //UI
     private TimePicker timePicker;
     // SharedPreference
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class ChangeTimeActivity extends AppCompatActivity {
         timePicker = findViewById(R.id.timePicker);
 
         // SharedPreferencesの設定
-        sharedPreferences = getSharedPreferences("Alarm", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("Ararm", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
 
@@ -44,9 +45,14 @@ public class ChangeTimeActivity extends AppCompatActivity {
     public void settimer (View view) {
         //アラームをセットするbuttonを押した際の動作
 
+        Context context = getApplicationContext();
+
+        Toast.makeText(context , "セットしました！", Toast.LENGTH_LONG).show();
+
         //時間を取得する
         int hour = timePicker.getHour();
         int minute = timePicker.getMinute();
+
 
         //  Calendarを作る
         Calendar calendar = Calendar.getInstance();
@@ -79,6 +85,7 @@ public class ChangeTimeActivity extends AppCompatActivity {
 
         } else {
             alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+        }
 
             // SharedPreferencesに値を保存する
             long time = calendar.getTimeInMillis();
@@ -89,13 +96,20 @@ public class ChangeTimeActivity extends AppCompatActivity {
             Intent resultIntent = new Intent();
             resultIntent.putExtra("time", time);
             setResult(RESULT_OK, resultIntent);
+
             finish();
         }
-    }
+
 
 
     public void back (View v){
         onBackPressed();
     }
+
+    public void test (View v){
+        Intent intent = new Intent(ChangeTimeActivity.this, AlarmActivity.class);
+        startActivity(intent);
+    }
 }
+
 

@@ -4,52 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF"
-    tools:context=".MainActivity">
+    android:background="#111111"
+    tools:context=".MainActivity"><![CDATA[
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="多機能目覚まし！"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:layout_editor_absoluteX="73dp"
+    tools:layout_editor_absoluteY="299dp" />
+
+
+
+    ]]>
 
     <Button
         android:id="@+id/changetime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="73dp"
-        android:layout_marginTop="299dp"
-        android:layout_marginEnd="73dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="13dp"
+        android:background="#00FFFFFF"
         android:onClick="setTime"
         android:text="目覚ましの時間を変更"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="31dp"
+        android:layout_marginTop="43dp"
         android:text="9:41"
-        android:textSize="75sp"
-        app:layout_constraintBottom_toTopOf="@+id/changetime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="#FDFDFD"
+        android:textSize="90sp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
         android:id="@+id/switch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="161dp"
         android:text="アラーム解除の難易度を上げる"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -59,10 +57,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="11dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="15dp"
         android:text="アラームをオンにする"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/switch2"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="25dp"
+        android:background="#00FFFFFF"
+        android:onClick="release"
+        android:text="削除"
+        android:textColor="#FDFDFD"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="こんにちは"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/timeTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/timeTextView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="に起こします。"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/timeTextView"
+        app:layout_constraintStart_toEndOf="@+id/timeTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

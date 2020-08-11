@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("アラームアプリ");
 
+
         // ビュートの関連付け
         timeTextView = findViewById(R.id.timeTextView);
 
@@ -53,15 +54,18 @@ public class MainActivity extends AppCompatActivity {
         //AlarmManagerの取得
         alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 
+
         // alarmの時間を取得
         long time = sharedPreferences.getLong("time", 0);
 
         // TextViewに表示
-        if (time !=0) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(time);
-            String timeText = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
-            timeTextView.setText(timeText);
+            if (time !=0) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(time);
+                String timeText = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
+                timeTextView.setText(timeText);
+
+
 
         } else {
             timeTextView.setText("--:--");
@@ -102,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         alarmManager.cancel(alarmIntent);
 
         // TextViewに表示させる
-        timeTextView.setText("アラームはセットされていません");
+        timeTextView.setText("--:--");
 
         //SharedPreferencesの値を削除
         editor.remove("time");
