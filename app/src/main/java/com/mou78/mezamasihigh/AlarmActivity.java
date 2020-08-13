@@ -2,6 +2,7 @@ package com.mou78.mezamasihigh;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -16,12 +17,17 @@ public class AlarmActivity extends AppCompatActivity {
     String mondai;//実際に表示させる問題　文字列
     int seikai;//4桁のうち今何行目を回答しているのかを覚えておく変数
     TextView textView;//問題を表示させるTextView
-
+    MediaPlayer p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm2);
+
+        // 音楽の読み込み
+        p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
+        // 連続再生設定
+        p.setLooping(true);
 
         textView = (TextView) findViewById(R.id.textView6);//関連付け
         start();
@@ -127,5 +133,19 @@ public class AlarmActivity extends AppCompatActivity {
     //タイマー止めるボタン
     public void stop(View view) {
         onBackPressed();
+    }
+
+    //アラームコード
+    @Override
+    protected void onResume() {
+        super.onResume();
+        p.start(); // 再生
+    }
+    // アプリ終了時に実行
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        p.release();// メモリの解放
+        p = null; // 音楽プレーヤーを破棄
     }
 }
