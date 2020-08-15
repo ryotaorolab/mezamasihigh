@@ -2,12 +2,17 @@ package com.mou78.mezamasihigh;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.location.Criteria;
+import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -75,7 +80,10 @@ public class AlarmActivity extends AppCompatActivity {
             seikai = seikai + 1;
 
             if (seikai == 4) {
-                finish();
+                //解除後の画面に移行
+                Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
+                startActivity(intent);
+                //finish();
             }
 
         } else {
@@ -92,7 +100,10 @@ public class AlarmActivity extends AppCompatActivity {
             seikai = seikai + 1;
 
             if (seikai == 4) {
-                finish();
+                //解除後の画面に移行
+                Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
+                startActivity(intent);
+                //finish();
             }
         } else {
 
@@ -107,7 +118,10 @@ public class AlarmActivity extends AppCompatActivity {
             seikai = seikai + 1;
 
             if (seikai == 4) {
-                finish();
+                //解除後の画面に移行
+                Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
+                startActivity(intent);
+                //finish();
             }
         } else {
 
@@ -122,7 +136,10 @@ public class AlarmActivity extends AppCompatActivity {
             seikai = seikai + 1;
 
             if (seikai == 4) {
-                finish();
+                //解除後の画面に移行
+                Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
+                startActivity(intent);
+                //finish();
             }
         } else {
 
@@ -130,10 +147,6 @@ public class AlarmActivity extends AppCompatActivity {
         }
     }
 
-    //タイマー止めるボタン
-    public void stop(View view) {
-        onBackPressed();
-    }
 
     //アラームコード
     @Override
@@ -141,6 +154,7 @@ public class AlarmActivity extends AppCompatActivity {
         super.onResume();
         p.start(); // 再生
     }
+
     // アプリ終了時に実行
     @Override
     protected void onDestroy() {
