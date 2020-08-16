@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     //ArarmManager
     private AlarmManager alarmManager;
+    MediaPlayer test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
         //SharedPreferencesの値を削除
         editor.remove("time");
         editor.commit();
+    }
+    public  void Testaram (View view) {
+
+        // 音楽の読み込み
+        test = MediaPlayer.create(getApplicationContext(), R.raw.morning);
+        // 一回再生
+        test.start();
     }
 
 }

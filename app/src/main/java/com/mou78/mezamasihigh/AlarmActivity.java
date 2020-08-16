@@ -2,9 +2,11 @@ package com.mou78.mezamasihigh;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.LocationManager;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +30,7 @@ public class AlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm2);
+
 
         // 音楽の読み込み
         p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
@@ -82,7 +85,6 @@ public class AlarmActivity extends AppCompatActivity {
             if (seikai == 4) {
                 //目覚まし停止
                 p.pause();
-
                 //解除後の画面に移行
                 Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
                 startActivity(intent);
@@ -90,13 +92,14 @@ public class AlarmActivity extends AppCompatActivity {
             }
 
         } else {
-            Toast.makeText(this, "数字が違うよ！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "選択された数字が一致しません", Toast.LENGTH_SHORT).show();
         }
     }
 
 
 
     public void number2(View v) {
+
         if (hairetu[seikai] == 2) {
             mondai = mondai.substring(1);
             textView.setText(mondai);
@@ -112,11 +115,12 @@ public class AlarmActivity extends AppCompatActivity {
             }
         } else {
 
-            Toast.makeText(this, "数字が違うよ！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "選択された数字が一致しません！", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void number3(View v) {
+
         if (hairetu[seikai] == 3) {
             mondai = mondai.substring(1);
             textView.setText(mondai);
@@ -132,11 +136,12 @@ public class AlarmActivity extends AppCompatActivity {
             }
         } else {
 
-            Toast.makeText(this, "数字が違うよ！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "選択された数字が一致しません", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void number4(View v) {
+
         if (hairetu[seikai] == 4) {
             mondai = mondai.substring(1);
             textView.setText(mondai);
@@ -152,7 +157,7 @@ public class AlarmActivity extends AppCompatActivity {
             }
         } else {
 
-            Toast.makeText(this, "数字が違うよ！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "選択された数字が一致しません", Toast.LENGTH_SHORT).show();
         }
     }
 
