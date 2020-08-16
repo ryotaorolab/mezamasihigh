@@ -80,6 +80,9 @@ public class AlarmActivity extends AppCompatActivity {
             seikai = seikai + 1;
 
             if (seikai == 4) {
+                //目覚まし停止
+                p.pause();
+
                 //解除後の画面に移行
                 Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
                 startActivity(intent);
@@ -100,6 +103,8 @@ public class AlarmActivity extends AppCompatActivity {
             seikai = seikai + 1;
 
             if (seikai == 4) {
+                //目覚まし停止
+                p.pause();
                 //解除後の画面に移行
                 Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
                 startActivity(intent);
@@ -118,6 +123,8 @@ public class AlarmActivity extends AppCompatActivity {
             seikai = seikai + 1;
 
             if (seikai == 4) {
+                //目覚まし停止
+                p.pause();
                 //解除後の画面に移行
                 Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
                 startActivity(intent);
@@ -136,6 +143,8 @@ public class AlarmActivity extends AppCompatActivity {
             seikai = seikai + 1;
 
             if (seikai == 4) {
+                //目覚まし停止
+                p.pause();
                 //解除後の画面に移行
                 Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
                 startActivity(intent);

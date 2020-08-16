@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -37,5 +38,22 @@ public class UnlockActicity extends AppCompatActivity {
         //Java呼び出し
         myWebView.loadUrl("javascript:addCount();");
 
+    }
+    //WebViewの上にある透明な画像
+    public void not (View v) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://booked.jp/weather/tokyo-18247"));
+        startActivity(intent);
+    }
+
+    //天気の詳細を見る（外部ブラウザ起動）
+    public  void open (View v) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://booked.jp/weather/tokyo-18247"));
+        startActivity(intent);
+    }
+
+    //閉じる
+    public  void Close (View v) {
+        this.finish();
+        this.moveTaskToBack(true);
     }
 }
