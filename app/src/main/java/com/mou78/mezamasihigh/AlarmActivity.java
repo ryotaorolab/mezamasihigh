@@ -176,4 +176,9 @@ public class AlarmActivity extends AppCompatActivity {
         p.release();// メモリの解放
         p = null; // 音楽プレーヤーを破棄
     }
+    //help画面に移行
+    public void help(View v) {
+        Intent intent = new Intent(AlarmActivity.this, HelpActivity.class);
+        startActivity(intent);
+    }
 }

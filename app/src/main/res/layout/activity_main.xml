@@ -14,6 +14,10 @@
 
 
 
+
+
+
+
     ]]>
 
     <TextView
@@ -21,20 +25,20 @@
         android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="29dp"
         android:text="9:41"
         android:textColor="#FDFDFD"
         android:textSize="100sp"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="21dp"
-        android:background="#00FFFFFF"
+        android:background="#FFFFFF"
+        android:backgroundTint="#B5D8263B"
         android:onClick="release"
         android:text="削除"
         android:textColor="#FDFDFD"
@@ -43,14 +47,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/changetime" />
 
+
+
     <Button
         android:id="@+id/changetime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="13dp"
-        android:background="#00FFFFFF"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="12dp"
+        android:background="#FFEB3B"
+        android:backgroundTint="#974CAF50"
         android:onClick="setTime"
         android:text="目覚ましの時間を変更"
         android:textColor="#FFFFFF"
@@ -75,10 +82,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="に起こします。"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:text="に絶対起こします！"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
 
@@ -102,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="9dp"
         android:text="実際に鳴らしてみる！"
         android:textColor="#E8DEDE"
         android:textSize="24sp"

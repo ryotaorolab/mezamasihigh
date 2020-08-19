@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UnlockActicity"></activity>
+        <activity android:name=".HelpActivity"></activity>
+        <activity android:name=".UnlockActicity" />
         <activity android:name=".ChangeTimeActivity" />
         <activity android:name=".AlarmActivity" />
         <activity android:name=".MainActivity">
