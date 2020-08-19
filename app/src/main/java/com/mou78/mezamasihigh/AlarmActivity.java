@@ -57,19 +57,23 @@ public class AlarmActivity extends AppCompatActivity {
 
     public void start() {
 
-        hairetu = new int[4];
+        hairetu = new int[6];
         Random rand = new Random();
         hairetu[0] = rand.nextInt(4) + 1;
         hairetu[1] = rand.nextInt(4) + 1;
         hairetu[2] = rand.nextInt(4) + 1;
         hairetu[3] = rand.nextInt(4) + 1;
+        hairetu[4] = rand.nextInt(4) + 1;
+        hairetu[5] = rand.nextInt(4) + 1;
 
         mondai =
                 Integer.toString(hairetu[0])
 
                         + Integer.toString(hairetu[1])
                         + Integer.toString(hairetu[2])
-                        + Integer.toString(hairetu[3]);
+                        + Integer.toString(hairetu[3])
+                        + Integer.toString(hairetu[4])
+                        + Integer.toString(hairetu[5]);
 
         textView.setText(mondai);
         seikai = 0;
@@ -82,7 +86,7 @@ public class AlarmActivity extends AppCompatActivity {
             textView.setText(mondai);
             seikai = seikai + 1;
 
-            if (seikai == 4) {
+            if (seikai == 6) {
                 //目覚まし停止
                 p.pause();
                 //解除後の画面に移行
@@ -105,7 +109,7 @@ public class AlarmActivity extends AppCompatActivity {
             textView.setText(mondai);
             seikai = seikai + 1;
 
-            if (seikai == 4) {
+            if (seikai == 6) {
                 //目覚まし停止
                 p.pause();
                 //解除後の画面に移行
@@ -126,7 +130,7 @@ public class AlarmActivity extends AppCompatActivity {
             textView.setText(mondai);
             seikai = seikai + 1;
 
-            if (seikai == 4) {
+            if (seikai == 6) {
                 //目覚まし停止
                 p.pause();
                 //解除後の画面に移行
@@ -147,7 +151,7 @@ public class AlarmActivity extends AppCompatActivity {
             textView.setText(mondai);
             seikai = seikai + 1;
 
-            if (seikai == 4) {
+            if (seikai == 6) {
                 //目覚まし停止
                 p.pause();
                 //解除後の画面に移行

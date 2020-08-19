@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#302F2F"
+    android:onClick="test"
     tools:context=".ChangeTimeActivity">
 
     <TimePicker
@@ -19,41 +20,27 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="124dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="14dp"
         android:backgroundTint="#B43F51B5"
         android:onClick="back"
         android:text="戻る"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button3"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintEnd_toStartOf="@+id/button3" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="88dp"
         android:layout_height="67dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="14dp"
         android:backgroundTint="#AE4CAF50"
         android:onClick="settimer"
         android:text="決定"
         android:textColor="#F6F6F6"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
-        app:layout_constraintVertical_bias="0.555" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="100dp"
-        android:onClick="test"
-        android:text="テスト"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
