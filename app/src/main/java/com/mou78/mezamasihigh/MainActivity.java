@@ -40,11 +40,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle("アラームアプリ");
+        setTitle("起きろ目覚まし");
 
-
-        // ビュートの関連付け
-        timeTextView = findViewById(R.id.timeTextView);
 
         // ビューの関連付け
         timeTextView = findViewById(R.id.timeTextView);

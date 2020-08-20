@@ -12,6 +12,9 @@ public class HelpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+
+        setTitle("ヘルプ");
+
     }
     public void back(View v) {
         finish();

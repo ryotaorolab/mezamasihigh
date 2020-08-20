@@ -31,6 +31,9 @@ public class ChangeTimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changetime);
+
+        setTitle("時間指定");
+
         //TimePickerの関連付け
         timePicker = findViewById(R.id.timePicker);
 

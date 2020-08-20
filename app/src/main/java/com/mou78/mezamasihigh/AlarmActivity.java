@@ -31,18 +31,20 @@ public class AlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm2);
 
+        setTitle("さあ！起きましょう！");
 
         // 音楽の読み込み
         p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
         // 連続再生設定
         p.setLooping(true);
 
+
         textView = (TextView) findViewById(R.id.textView6);//関連付け
         start();
 
             //時刻表示するコードを追加
             Calendar cal = Calendar.getInstance();       //カレンダーを取得
-            System.out.println(String.format("%06d", 1));
+            System.out.println(String.format("%05d", 1));
 
 
         int iHour = cal.get(Calendar.HOUR);         //時を取得
@@ -53,6 +55,11 @@ public class AlarmActivity extends AppCompatActivity {
             TextView tv = (TextView)findViewById(R.id.textView3);
             tv.setText(strTime);
         }
+
+    //戻るボタンの無効化
+    @Override
+    public void onBackPressed() {
+    }
 
 
     public void start() {
@@ -97,6 +104,13 @@ public class AlarmActivity extends AppCompatActivity {
 
         } else {
             Toast.makeText(this, "選択された数字が一致しません", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "間違えたら音量が上がるよ！", Toast.LENGTH_SHORT).show();
+            //AudioManagerをつくる
+            AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+            //現在の音量を取得
+            int ringVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+            //間違えたら音量が上がるように
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, 100, 0);
         }
     }
 
@@ -120,6 +134,13 @@ public class AlarmActivity extends AppCompatActivity {
         } else {
 
             Toast.makeText(this, "選択された数字が一致しません！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "間違えたら音量が上がるよ！", Toast.LENGTH_SHORT).show();
+            //AudioManagerをつくる
+            AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+            //現在の音量を取得
+            int ringVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+            //間違えたら音量が上がるように
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, 100, 0);
         }
     }
 
@@ -139,8 +160,14 @@ public class AlarmActivity extends AppCompatActivity {
                 //finish();
             }
         } else {
-
             Toast.makeText(this, "選択された数字が一致しません", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "間違えたら音量が上がるよ！", Toast.LENGTH_SHORT).show();
+            //AudioManagerをつくる
+            AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+            //現在の音量を取得
+            int ringVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+            //間違えたら音量が上がるように
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, 100, 0);
         }
     }
 
@@ -160,8 +187,14 @@ public class AlarmActivity extends AppCompatActivity {
                 //finish();
             }
         } else {
-
             Toast.makeText(this, "選択された数字が一致しません", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "間違えたら音量が上がるよ！", Toast.LENGTH_SHORT).show();
+            //AudioManagerをつくる
+            AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+            //現在の音量を取得
+            int ringVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+            //間違えたら音量が上がるように
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, 100, 0);
         }
     }
 

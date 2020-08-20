@@ -25,6 +25,8 @@ public class UnlockActicity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unlock_acticity);
 
+        setTitle("今日の役立つ情報");
+
         WebView webView1 = (WebView)findViewById(R.id.webView);
         webView1.setWebViewClient(new WebViewClient() {
         });
