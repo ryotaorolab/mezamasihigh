@@ -3,6 +3,8 @@
     package="com.mou78.mezamasihigh">
     <!-- ネット接続を許可する -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 振動の許可 -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -11,11 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HelpActivity"></activity>
+        <activity android:name=".HelpActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".UnlockActicity" />
         <activity android:name=".ChangeTimeActivity" />
-        <activity android:name=".AlarmActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".AlarmActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

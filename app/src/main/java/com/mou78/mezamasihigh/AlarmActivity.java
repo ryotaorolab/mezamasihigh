@@ -1,6 +1,7 @@
 package com.mou78.mezamasihigh;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +11,11 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.net.MalformedURLException;
-import java.net.URL;
+import android.os.Vibrator;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -25,13 +26,26 @@ public class AlarmActivity extends AppCompatActivity {
     int seikai;//4桁のうち今何行目を回答しているのかを覚えておく変数
     TextView textView;//問題を表示させるTextView
     MediaPlayer p;
+    private Vibrator mVibrator;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // remove title
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_alarm2);
 
         setTitle("さあ！起きましょう！");
+
+        //振動
+        mVibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        // 振動の設定
+        long pattern[] = {100, 1000, 400};
+        // パターンと繰り返し回数を指定　下記例は1回繰り返し、つまり2回実行
+        mVibrator.vibrate(pattern, 0);
 
         // 音楽の読み込み
         p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
@@ -96,6 +110,8 @@ public class AlarmActivity extends AppCompatActivity {
             if (seikai == 6) {
                 //目覚まし停止
                 p.pause();
+                //振動の停止
+                mVibrator.cancel();
                 //解除後の画面に移行
                 Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
                 startActivity(intent);
@@ -126,6 +142,8 @@ public class AlarmActivity extends AppCompatActivity {
             if (seikai == 6) {
                 //目覚まし停止
                 p.pause();
+                //振動の停止
+                mVibrator.cancel();
                 //解除後の画面に移行
                 Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
                 startActivity(intent);
@@ -154,6 +172,8 @@ public class AlarmActivity extends AppCompatActivity {
             if (seikai == 6) {
                 //目覚まし停止
                 p.pause();
+                //振動の停止
+                mVibrator.cancel();
                 //解除後の画面に移行
                 Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
                 startActivity(intent);
@@ -181,6 +201,8 @@ public class AlarmActivity extends AppCompatActivity {
             if (seikai == 6) {
                 //目覚まし停止
                 p.pause();
+                //振動の停止
+                mVibrator.cancel();
                 //解除後の画面に移行
                 Intent intent = new Intent(AlarmActivity.this, UnlockActicity.class);
                 startActivity(intent);

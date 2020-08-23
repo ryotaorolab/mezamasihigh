@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle("起きろ目覚まし");
+        setTitle("絶対に起こす目覚まし");
 
 
         // ビューの関連付け
