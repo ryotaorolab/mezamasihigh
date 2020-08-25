@@ -164,15 +164,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/helpimage" />
+                    app:srcCompat="@drawable/guide1" />
 
                 <ImageView
-                    android:id="@+id/imageView17"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/imageView4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/helpimage2" />
+                    app:srcCompat="@drawable/guide2" />
+
             </LinearLayout>
 
         </LinearLayout>
