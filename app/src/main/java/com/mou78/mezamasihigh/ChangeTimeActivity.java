@@ -76,18 +76,46 @@ public class ChangeTimeActivity extends AppCompatActivity {
 
         //Alarmをセットする
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlarmActivity.class);
-        intent.setData(Uri.parse(String.valueOf(0)));
-        PendingIntent alarmIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        alarmManager.cancel(alarmIntent);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), alarmIntent);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+
+
+        //通知の振り分け
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+
+            Intent intent = new Intent(getApplicationContext(), AlarmNotification.class);
+            intent.putExtra("RequestCode",requestCode);
+            pending = PendingIntent.getBroadcast(
+            getApplicationContext(),requestCode, intent, 0);
 
         } else {
-            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+            Intent intent = new Intent(this, AlarmActivity.class);
+            intent.setData(Uri.parse(String.valueOf(0)));
+            PendingIntent alarmIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            alarmManager.cancel(alarmIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), alarmIntent);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+            } else {
+                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+            }
         }
+
+        //もともとのやつ
+//        Intent intent = new Intent(this, AlarmActivity.class);
+//        intent.setData(Uri.parse(String.valueOf(0)));
+//        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+//
+//        alarmManager.cancel(alarmIntent);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), alarmIntent);
+//
+//        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+//
+//        } else {
+//            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+//
+//        }
 
             // SharedPreferencesに値を保存する
             long time = calendar.getTimeInMillis();
