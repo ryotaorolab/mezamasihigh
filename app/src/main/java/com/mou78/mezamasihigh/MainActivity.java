@@ -4,8 +4,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -15,11 +17,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.sql.Time;
 import java.util.Calendar;
 
 import static android.system.Os.remove;
+import static androidx.core.os.LocaleListCompat.create;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -111,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
         editor.remove("time");
         editor.commit();
     }
+    public void Announce(View view) {
+        Intent intent = new Intent(MainActivity.this, AnnounceActivity.class);
+        startActivity(intent);
+    }
+
     public  void Testaram (View view) {
 
         // 音楽の読み込み

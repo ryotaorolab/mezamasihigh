@@ -25,7 +25,8 @@ public class ChangeTimeActivity extends AppCompatActivity {
     // SharedPreference
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    Context context;
+    private int requestCode = 1;
+    private PendingIntent pending;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,6 @@ public class ChangeTimeActivity extends AppCompatActivity {
     //アラームをセットする
     public void settimer (View view) {
         //アラームをセットするbuttonを押した際の動作
-
         Context context = getApplicationContext();
 
         Toast.makeText(context , "セットしました！", Toast.LENGTH_LONG).show();
@@ -78,8 +78,7 @@ public class ChangeTimeActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmActivity.class);
         intent.setData(Uri.parse(String.valueOf(0)));
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-
+        PendingIntent alarmIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         alarmManager.cancel(alarmIntent);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), alarmIntent);
