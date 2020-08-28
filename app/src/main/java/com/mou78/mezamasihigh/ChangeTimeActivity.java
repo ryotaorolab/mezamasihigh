@@ -4,15 +4,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.AlarmClock;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -27,6 +35,10 @@ public class ChangeTimeActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private int requestCode = 1;
     private PendingIntent pending;
+    private AlarmManager am;
+
+
+//    private PendingIntent pending;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +58,11 @@ public class ChangeTimeActivity extends AppCompatActivity {
     }
 
     //アラームをセットする
-    public void settimer (View view) {
+    public void settimer(View view) {
         //アラームをセットするbuttonを押した際の動作
         Context context = getApplicationContext();
 
-        Toast.makeText(context , "セットしました！", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "セットしました！", Toast.LENGTH_LONG).show();
 
         //時間を取得する
         int hour = timePicker.getHour();
@@ -75,35 +87,71 @@ public class ChangeTimeActivity extends AppCompatActivity {
         }
 
         //Alarmをセットする
-        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        Toast.makeText(this, "if文外だよ！", Toast.LENGTH_SHORT).show();
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        Toast.makeText(this, "if文外だよ！", Toast.LENGTH_SHORT).show();
 
         //通知の振り分け
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= 28) {
 
-            Intent intent = new Intent(getApplicationContext(), AlarmNotification.class);
-            intent.putExtra("RequestCode",requestCode);
-            pending = PendingIntent.getBroadcast(
-                    getApplicationContext(),requestCode, intent, 0);
-            Toast.makeText(this, "android8.0以上の端末だよ！！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "android10.0以上の端末だよ！！", Toast.LENGTH_SHORT).show();
 
-        } else {
-            Intent intent = new Intent(this, AlarmActivity.class);
-            intent.setData(Uri.parse(String.valueOf(0)));
-            PendingIntent alarmIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-            alarmManager.cancel(alarmIntent);
-            Toast.makeText(this, "android8.0以下だよ！", Toast.LENGTH_SHORT).show();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), alarmIntent);
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
-            } else {
-                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
-                Toast.makeText(this, "if文は機能してないよ！！", Toast.LENGTH_SHORT).show();
+            Button buttonStart = this.findViewById(R.id.button3);
+            buttonStart.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View v) {
+
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTimeInMillis(System.currentTimeMillis());
+                    // 10sec
+                    calendar.add(Calendar.SECOND, 3);
+
+                    Intent intent = new Intent(getApplicationContext(), AlarmNotification.class);
+                    intent.putExtra("RequestCode", requestCode);
+
+                    pending = PendingIntent.getBroadcast(
+                            getApplicationContext(), requestCode, intent, 0);
+
+                    // アラームをセットする
+                    am = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                    if (am != null) {
+                        am.setExact(AlarmManager.RTC_WAKEUP,
+                                System.currentTimeMillis() + 5000, pending);
+
+                        // トーストで設定されたことをを表示
+                        Toast.makeText(getApplicationContext(),
+                                "alarm start", Toast.LENGTH_SHORT).show();
+
+                        Log.d("debug", "start");
+                    }
+                }
+                });
+
+
+//            Intent intent = new Intent(ChangeTimeActivity.this, AlarmNotification.class);
+//            startActivity(intent);
+//            intent.putExtra("RequestCode",requestCode);
+//            pending = PendingIntent.getBroadcast(
+//            getApplicationContext(),requestCode, intent, 0);
+
+
+
+            } else { //Android8.0以下の端末での動作
+                Intent intent = new Intent(this, AlarmActivity.class);
+                intent.setData(Uri.parse(String.valueOf(0)));
+                PendingIntent alarmIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+//                alarmManager.cancel(alarmIntent);
+                Toast.makeText(this, "android8.0以下だよ！", Toast.LENGTH_SHORT).show();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), alarmIntent);
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+                } else {
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+                }
             }
-        }
 
-        //もともとのやつ
+            //もともとのやつ
 //        Intent intent = new Intent(this, AlarmActivity.class);
 //        intent.setData(Uri.parse(String.valueOf(0)));
 //        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
@@ -120,27 +168,26 @@ public class ChangeTimeActivity extends AppCompatActivity {
 //
 //        }
 
-        // SharedPreferencesに値を保存する
-        long time = calendar.getTimeInMillis();
-        editor.putLong("time", time);
-        editor.apply();
+            // SharedPreferencesに値を保存する
+            long time = calendar.getTimeInMillis();
+            editor.putLong("time", time);
+            editor.apply();
 
-        // MainActivityに値を保存する
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra("time", time);
-        setResult(RESULT_OK, resultIntent);
+            // MainActivityに値を保存する
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("time", time);
+            setResult(RESULT_OK, resultIntent);
 
-        finish();
+            finish();
+        }
+
+
+        public void back (View v){
+            onBackPressed();
+        }
+
+        public void test (View v){
+            Intent intent = new Intent(ChangeTimeActivity.this, AlarmActivity.class);
+            startActivity(intent);
+        }
     }
-
-
-
-    public void back (View v){
-        onBackPressed();
-    }
-
-    public void test (View v){
-        Intent intent = new Intent(ChangeTimeActivity.this, AlarmActivity.class);
-        startActivity(intent);
-    }
-}

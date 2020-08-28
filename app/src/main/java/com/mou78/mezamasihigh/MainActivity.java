@@ -90,14 +90,16 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             //データー取得
             long millis = data.getLongExtra("time", 0);
-
             //カレンダー型を精製して時間を取り出す。
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(millis);
+//            String hour = ;
+//            String minute = ;
             String time = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
-
+//            String time = hour + ":" + String.format("%05d", millis);
             // TextViewに表示させる
             timeTextView.setText(time);
+//            System.out.println(String.format("%06d", 1));
         }
     }
 

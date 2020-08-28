@@ -11,6 +11,9 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.util.Log;
+
+import com.mou78.mezamasihigh.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -23,6 +26,9 @@ public class AlarmNotification extends BroadcastReceiver {
         Log.d("AlarmBroadcastReceiver","onReceive() pid=" + android.os.Process.myPid());
 
         int requestCode = intent.getIntExtra("RequestCode",0);
+
+//        Intent intent1 = new Intent();
+//        context.startActivity(intent1);
 
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
