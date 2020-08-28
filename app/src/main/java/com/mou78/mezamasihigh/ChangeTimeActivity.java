@@ -76,7 +76,7 @@ public class ChangeTimeActivity extends AppCompatActivity {
 
         //Alarmをセットする
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-
+        Toast.makeText(this, "if文外だよ！", Toast.LENGTH_SHORT).show();
 
         //通知の振り分け
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -84,19 +84,22 @@ public class ChangeTimeActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), AlarmNotification.class);
             intent.putExtra("RequestCode",requestCode);
             pending = PendingIntent.getBroadcast(
-            getApplicationContext(),requestCode, intent, 0);
+                    getApplicationContext(),requestCode, intent, 0);
+            Toast.makeText(this, "android8.0以上の端末だよ！！", Toast.LENGTH_SHORT).show();
 
         } else {
             Intent intent = new Intent(this, AlarmActivity.class);
             intent.setData(Uri.parse(String.valueOf(0)));
             PendingIntent alarmIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
             alarmManager.cancel(alarmIntent);
+            Toast.makeText(this, "android8.0以下だよ！", Toast.LENGTH_SHORT).show();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), alarmIntent);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
             } else {
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+                Toast.makeText(this, "if文は機能してないよ！！", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -117,18 +120,18 @@ public class ChangeTimeActivity extends AppCompatActivity {
 //
 //        }
 
-            // SharedPreferencesに値を保存する
-            long time = calendar.getTimeInMillis();
-            editor.putLong("time", time);
-            editor.apply();
+        // SharedPreferencesに値を保存する
+        long time = calendar.getTimeInMillis();
+        editor.putLong("time", time);
+        editor.apply();
 
-            // MainActivityに値を保存する
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("time", time);
-            setResult(RESULT_OK, resultIntent);
+        // MainActivityに値を保存する
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("time", time);
+        setResult(RESULT_OK, resultIntent);
 
-            finish();
-        }
+        finish();
+    }
 
 
 
@@ -141,5 +144,3 @@ public class ChangeTimeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
-
