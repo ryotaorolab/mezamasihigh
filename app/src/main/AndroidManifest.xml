@@ -3,7 +3,6 @@
     package="com.mou78.mezamasihigh">
     <!-- ネット接続を許可する -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 振動の許可 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 

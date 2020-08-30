@@ -11,6 +11,8 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mou78.mezamasihigh.R;
 
@@ -20,8 +22,11 @@ import java.util.Locale;
 
 public class AlarmNotification extends BroadcastReceiver {
 
+
     @Override   // データを受信した
     public void onReceive(Context context, Intent intent) {
+
+
 
         Log.d("AlarmBroadcastReceiver","onReceive() pid=" + android.os.Process.myPid());
 

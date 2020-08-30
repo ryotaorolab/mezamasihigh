@@ -95,12 +95,13 @@ public class ChangeTimeActivity extends AppCompatActivity {
 
             Toast.makeText(this, "android10.0以上の端末だよ！！", Toast.LENGTH_SHORT).show();
 
-            Button buttonStart = this.findViewById(R.id.button3);
-            buttonStart.setOnClickListener(new View.OnClickListener() {
+//            Button buttonStart = this.findViewById(R.id.button3);
+//            buttonStart.setOnClickListener(new View.OnClickListener() {
+//
+//                public void onClick(View v) {
+//
+//                    Calendar calendar = Calendar.getInstance();
 
-                public void onClick(View v) {
-
-                    Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(System.currentTimeMillis());
                     // 10sec
                     calendar.add(Calendar.SECOND, 3);
@@ -124,8 +125,8 @@ public class ChangeTimeActivity extends AppCompatActivity {
 
                         Log.d("debug", "start");
                     }
-                }
-                });
+//                }
+//                });
 
 
 //            Intent intent = new Intent(ChangeTimeActivity.this, AlarmNotification.class);
