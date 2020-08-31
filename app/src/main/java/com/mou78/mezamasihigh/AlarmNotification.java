@@ -23,9 +23,13 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import static android.app.NotificationManager.IMPORTANCE_HIGH;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 
 
 public class AlarmNotification extends BroadcastReceiver {
+
+    public static final String CLICK_NOTIFICATION = "click_notification";
+    public static final String DELETE_NOTIFICATION = "delete_notification";
 
     @Override   // データを受信した
     public void onReceive(Context context, Intent intent) {
@@ -35,13 +39,11 @@ public class AlarmNotification extends BroadcastReceiver {
 
         Log.d("AlarmBroadcastReceiver","onReceive() pid=" + Process.myPid());
 
+
         int requestCode = intent.getIntExtra("RequestCode",0);
 
-//        Intent intent1 = new Intent();
-//        context.startActivity(intent1);
-
-        PendingIntent pendingIntent =
-                PendingIntent.getActivity(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent =
+            PendingIntent.getActivity(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         String channelId = "default";
         // app name
@@ -58,7 +60,9 @@ public class AlarmNotification extends BroadcastReceiver {
         NotificationManager notificationManager =
                 (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 
+
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
 
         // Notification　Channel 設定
         NotificationChannel channel = new NotificationChannel(
@@ -73,6 +77,7 @@ public class AlarmNotification extends BroadcastReceiver {
         channel.setSound(defaultSoundUri, null);
         channel.setShowBadge(true);
 
+
         if(notificationManager != null){
             notificationManager.createNotificationChannel(channel);
 
@@ -82,10 +87,32 @@ public class AlarmNotification extends BroadcastReceiver {
                     .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
                     .setContentText(message)
                     .setAutoCancel(true)
-                    .setContentIntent(pendingIntent)
+//                    .setContentIntent(pendingIntent)
                     .setWhen(System.currentTimeMillis())
+                    .setAutoCancel(true)
+//                    .setContentIntent(pendingIntent)
                     .build();
-//            startForeground(1, notification);
+
+//            Intent intent = new Intent(this, AlarmActivity.class);
+//            PendingIntent activityIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+//                String action = intent.getAction();
+//
+//                switch (action) {
+//                    case CLICK_NOTIFICATION:
+//                        //通知タップ時のイベントを書く
+//                        Toast.makeText(context, "通知がタップされました", Toast.LENGTH_SHORT).show();
+//                        break;
+//
+//                    case DELETE_NOTIFICATION:
+//                        //通知削除時のイベントを書く
+//                        Toast.makeText(context, "通知が削除されました", Toast.LENGTH_SHORT).show();
+//                        break;
+//
+//                    default:
+//                        break;
+//                }
+
             // 通知
             notificationManager.notify(R.string.app_name, notification);
 
