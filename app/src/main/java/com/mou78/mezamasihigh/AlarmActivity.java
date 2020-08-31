@@ -57,14 +57,13 @@ public class AlarmActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= 28) {
 
+
+        } else { //Android8.0以下の端末での動作
+
             // 音楽の読み込み
             p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
             // 連続再生設定
             p.setLooping(true);
-
-        } else { //Android8.0以下の端末での動作
-
-
         }
 
 
