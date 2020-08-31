@@ -55,7 +55,6 @@ public class AlarmActivity extends AppCompatActivity {
         // 連続再生設定
         p.setLooping(true);
 
-
         textView = (TextView) findViewById(R.id.textView6);//関連付け
         start();
 
