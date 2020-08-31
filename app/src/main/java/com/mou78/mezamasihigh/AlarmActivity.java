@@ -3,6 +3,7 @@ package com.mou78.mezamasihigh;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,6 +14,8 @@ import android.location.Criteria;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -50,10 +53,20 @@ public class AlarmActivity extends AppCompatActivity {
         // パターンと繰り返し回数を指定　下記例は1回繰り返し、つまり2回実行
         mVibrator.vibrate(pattern, 0);
 
-        // 音楽の読み込み
-        p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
-        // 連続再生設定
-        p.setLooping(true);
+
+
+        if (Build.VERSION.SDK_INT >= 28) {
+
+            // 音楽の読み込み
+            p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
+            // 連続再生設定
+            p.setLooping(true);
+
+        } else { //Android8.0以下の端末での動作
+
+
+        }
+
 
         textView = (TextView) findViewById(R.id.textView6);//関連付け
         start();
