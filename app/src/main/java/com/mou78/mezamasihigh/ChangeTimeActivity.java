@@ -42,6 +42,7 @@ public class ChangeTimeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changetime);
 
@@ -99,43 +100,37 @@ public class ChangeTimeActivity extends AppCompatActivity {
 //            buttonStart.setOnClickListener(new View.OnClickListener() {
 //
 //                public void onClick(View v) {
-//
+////
 //                    Calendar calendar = Calendar.getInstance();
 
-                    calendar.setTimeInMillis(System.currentTimeMillis());
-                    // 10sec
-                    calendar.add(Calendar.SECOND, 3);
+//                    calendar.setTimeInMillis(System.currentTimeMillis());
+//                    // 10sec
+//                    calendar.add(Calendar.SECOND, 3);
 
                     Intent intent = new Intent(getApplicationContext(), AlarmNotification.class);
                     intent.putExtra("RequestCode", requestCode);
-
+//
                     pending = PendingIntent.getBroadcast(
                             getApplicationContext(), requestCode, intent, 0);
+
 
                     // アラームをセットする
                     am = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                    if (am != null) {
-                        am.setExact(AlarmManager.RTC_WAKEUP,
-                                System.currentTimeMillis() + 5000, pending);
 
-                        // トーストで設定されたことをを表示
-                        Toast.makeText(getApplicationContext(),
-                                "alarm start", Toast.LENGTH_SHORT).show();
-
-                        Log.d("debug", "start");
-                    }
-//                }
-//                });
-
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), pending);
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending);
+                } else {
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending);
+                }
 
 //            Intent intent = new Intent(ChangeTimeActivity.this, AlarmNotification.class);
 //            startActivity(intent);
 //            intent.putExtra("RequestCode",requestCode);
 //            pending = PendingIntent.getBroadcast(
 //            getApplicationContext(),requestCode, intent, 0);
-
-
 
             } else { //Android8.0以下の端末での動作
                 Intent intent = new Intent(this, AlarmActivity.class);

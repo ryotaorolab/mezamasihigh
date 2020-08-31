@@ -8,8 +8,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Process;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,16 +22,18 @@ import com.mou78.mezamasihigh.R;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import static android.app.NotificationManager.IMPORTANCE_HIGH;
+
 
 public class AlarmNotification extends BroadcastReceiver {
 
-
     @Override   // データを受信した
     public void onReceive(Context context, Intent intent) {
+        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.morning);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
-
-
-        Log.d("AlarmBroadcastReceiver","onReceive() pid=" + android.os.Process.myPid());
+        Log.d("AlarmBroadcastReceiver","onReceive() pid=" + Process.myPid());
 
         int requestCode = intent.getIntExtra("RequestCode",0);
 
@@ -44,11 +49,11 @@ public class AlarmNotification extends BroadcastReceiver {
 
         long currentTime = System.currentTimeMillis();
         SimpleDateFormat dataFormat =
-                new SimpleDateFormat("HH:mm:ss", Locale.JAPAN);
+                new SimpleDateFormat("HH:mm", Locale.JAPAN);
         String cTime = dataFormat.format(currentTime);
 
         // メッセージ　+ 11:22:331
-        String message = "時間になりました。 "+cTime ;
+        String message = "おはようございます！。 "+cTime+"になりました！";
 
         NotificationManager notificationManager =
                 (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -57,7 +62,7 @@ public class AlarmNotification extends BroadcastReceiver {
 
         // Notification　Channel 設定
         NotificationChannel channel = new NotificationChannel(
-                channelId, title , NotificationManager.IMPORTANCE_DEFAULT);
+                channelId, title , IMPORTANCE_HIGH);
         channel.setDescription(message);
         channel.enableVibration(true);
         channel.canShowBadge();
@@ -80,7 +85,7 @@ public class AlarmNotification extends BroadcastReceiver {
                     .setContentIntent(pendingIntent)
                     .setWhen(System.currentTimeMillis())
                     .build();
-
+//            startForeground(1, notification);
             // 通知
             notificationManager.notify(R.string.app_name, notification);
 

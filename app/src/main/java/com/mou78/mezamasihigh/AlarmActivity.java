@@ -226,6 +226,7 @@ public class AlarmActivity extends AppCompatActivity {
     }
 
 
+
     //アラームコード
     @Override
     protected void onResume() {
