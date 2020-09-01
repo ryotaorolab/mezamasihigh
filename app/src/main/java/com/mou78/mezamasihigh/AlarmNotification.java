@@ -8,34 +8,30 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Process;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.core.app.NotificationCompat;
-
-import com.mou78.mezamasihigh.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import static android.app.NotificationManager.IMPORTANCE_HIGH;
 import static android.content.Context.NOTIFICATION_SERVICE;
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 
 
 public class AlarmNotification extends BroadcastReceiver {
 
     @Override   // データを受信した
     public void onReceive(Context context, Intent intent) {
-        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.morning);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+//        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.morning);
+//        mediaPlayer.setLooping(true);
+//        mediaPlayer.start();
+
+        //MediaPlayerを動作させるためにサービスを起動する
+        Intent serviceIntent = new Intent(context, PushAlarm.class);
+        context.startService(serviceIntent);
+
 
         Intent sendIntent = new Intent(context, AlarmActivity.class);
         PendingIntent sender = PendingIntent.getActivity(context, 0, sendIntent, 0);
@@ -95,5 +91,6 @@ public class AlarmNotification extends BroadcastReceiver {
             // 通知
             notificationManager.notify(R.string.app_name, notification);
         }
+
     }
 }

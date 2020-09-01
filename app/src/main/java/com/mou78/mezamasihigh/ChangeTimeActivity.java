@@ -92,7 +92,7 @@ public class ChangeTimeActivity extends AppCompatActivity {
 //        Toast.makeText(this, "if文外だよ！", Toast.LENGTH_SHORT).show();
 
         //通知の振り分け
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 29) {
 
             Toast.makeText(this, "android10.0以上の端末だよ！！", Toast.LENGTH_SHORT).show();
 
@@ -126,12 +126,6 @@ public class ChangeTimeActivity extends AppCompatActivity {
                     alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending);
                 }
 
-//            Intent intent = new Intent(ChangeTimeActivity.this, AlarmNotification.class);
-//            startActivity(intent);
-//            intent.putExtra("RequestCode",requestCode);
-//            pending = PendingIntent.getBroadcast(
-//            getApplicationContext(),requestCode, intent, 0);
-
             } else { //Android8.0以下の端末での動作
                 Intent intent = new Intent(this, AlarmActivity.class);
                 intent.setData(Uri.parse(String.valueOf(0)));
@@ -146,23 +140,6 @@ public class ChangeTimeActivity extends AppCompatActivity {
                     alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
                 }
             }
-
-            //もともとのやつ
-//        Intent intent = new Intent(this, AlarmActivity.class);
-//        intent.setData(Uri.parse(String.valueOf(0)));
-//        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-//
-//        alarmManager.cancel(alarmIntent);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), alarmIntent);
-//
-//        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
-//
-//        } else {
-//            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
-//
-//        }
 
             // SharedPreferencesに値を保存する
             long time = calendar.getTimeInMillis();

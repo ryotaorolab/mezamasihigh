@@ -1,20 +1,11 @@
 package com.mou78.mezamasihigh;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
-import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Criteria;
-import android.location.LocationManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -45,6 +36,18 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm2);
 
         setTitle("さあ！起きましょう！");
+        //通知のaramを止めるて、新しく鳴らす
+        if (Build.VERSION.SDK_INT >= 29) {
+            stopService(new Intent(getApplicationContext(), PushAlarm.class));
+        } else { //Android8.0以下の端末での動作
+
+        }
+
+        // 音楽の読み込み
+        p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
+        // 連続再生設定
+        p.setLooping(true);
+        p.start(); // 再生
 
         //振動
         mVibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
@@ -69,20 +72,6 @@ public class AlarmActivity extends AppCompatActivity {
 
             TextView tv = (TextView)findViewById(R.id.textView3);
             tv.setText(strTime);
-
-        if (Build.VERSION.SDK_INT >= 28) {
-            MediaPlayer p;
-            Toast.makeText(this, "おはようございます！！", Toast.LENGTH_SHORT).show();
-
-        } else { //Android8.0以下の端末での動作
-            MediaPlayer p;
-            // 音楽の読み込み
-            p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
-            // 連続再生設定
-            p.setLooping(true);
-            p.start(); // 再生
-
-        }
 
     }
 
@@ -126,7 +115,7 @@ public class AlarmActivity extends AppCompatActivity {
 
             if (seikai == 6) {
                 //目覚まし停止
-                p.pause();
+                p.stop();
                 //振動の停止
                 mVibrator.cancel();
                 //解除後の画面に移行
@@ -158,7 +147,7 @@ public class AlarmActivity extends AppCompatActivity {
 
             if (seikai == 6) {
                 //目覚まし停止
-                p.pause();
+                p.stop();
                 //振動の停止
                 mVibrator.cancel();
                 //解除後の画面に移行
@@ -188,7 +177,7 @@ public class AlarmActivity extends AppCompatActivity {
 
             if (seikai == 6) {
                 //目覚まし停止
-                p.pause();
+                p.stop();
                 //振動の停止
                 mVibrator.cancel();
                 //解除後の画面に移行
@@ -217,7 +206,7 @@ public class AlarmActivity extends AppCompatActivity {
 
             if (seikai == 6) {
                 //目覚まし停止
-                p.pause();
+                p.stop();
                 //振動の停止
                 mVibrator.cancel();
                 //解除後の画面に移行
@@ -239,20 +228,13 @@ public class AlarmActivity extends AppCompatActivity {
 
 
 
-//    //アラームコード
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        p.start(); // 再生
-//    }
-//
-//    // アプリ終了時に実行
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        p.release();// メモリの解放
-//        p = null; // 音楽プレーヤーを破棄
-//    }
+    // アプリ終了時に実行
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        p.release();// メモリの解放
+        p = null; // 音楽プレーヤーを破棄
+    }
 
     //help画面に移行
     public void help(View v) {
