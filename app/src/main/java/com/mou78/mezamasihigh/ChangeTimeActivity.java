@@ -94,22 +94,9 @@ public class ChangeTimeActivity extends AppCompatActivity {
         //通知の振り分け
         if (Build.VERSION.SDK_INT >= 29) {
 
-            Toast.makeText(this, "android10.0以上の端末だよ！！", Toast.LENGTH_SHORT).show();
-
-//            Button buttonStart = this.findViewById(R.id.button3);
-//            buttonStart.setOnClickListener(new View.OnClickListener() {
-//
-//                public void onClick(View v) {
-////
-//                    Calendar calendar = Calendar.getInstance();
-
-//                    calendar.setTimeInMillis(System.currentTimeMillis());
-//                    // 10sec
-//                    calendar.add(Calendar.SECOND, 3);
-
                     Intent intent = new Intent(getApplicationContext(), AlarmNotification.class);
                     intent.putExtra("RequestCode", requestCode);
-//
+                    
                     pending = PendingIntent.getBroadcast(
                             getApplicationContext(), requestCode, intent, 0);
 
@@ -131,7 +118,6 @@ public class ChangeTimeActivity extends AppCompatActivity {
                 intent.setData(Uri.parse(String.valueOf(0)));
                 PendingIntent alarmIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 //                alarmManager.cancel(alarmIntent);
-                Toast.makeText(this, "android8.0以下だよ！", Toast.LENGTH_SHORT).show();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), null), alarmIntent);
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

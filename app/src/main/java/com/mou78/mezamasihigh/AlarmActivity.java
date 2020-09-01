@@ -36,7 +36,7 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm2);
 
         setTitle("さあ！起きましょう！");
-        //通知のaramを止めるて、新しく鳴らす
+        //通知のaramを止める
         if (Build.VERSION.SDK_INT >= 29) {
             stopService(new Intent(getApplicationContext(), PushAlarm.class));
         } else { //Android8.0以下の端末での動作

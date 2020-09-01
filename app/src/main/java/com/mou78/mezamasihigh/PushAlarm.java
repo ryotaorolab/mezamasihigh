@@ -35,31 +35,20 @@ public class PushAlarm extends Service {
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.morning);
 
         mp = MediaPlayer.create(this, uri);
-        mp.setLooping(true);
         mp.start();
-
-        int timeout = 100000000 * 1000;
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (mp.isPlaying()) {
-                    mp.stop();
-                }
-            }
-        }, timeout);
+        mp.setLooping(true);
 
         return START_STICKY;
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        if (mp.isPlaying()) {
-            mp.stop();
-        }
-
-        Log.d(TAG, "onDestroy");
-    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//
+//        if (mp.isPlaying()) {
+//            mp.stop();
+//        }
+//
+//        Log.d(TAG, "onDestroy");
+//    }
 }
