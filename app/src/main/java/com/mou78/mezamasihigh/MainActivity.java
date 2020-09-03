@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
             //カレンダー型を精製して時間を取り出す。
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(millis);
-//            String hour = HOUR;
-//            String minute = MINUTE;
-            String time = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
-//            String time = hour + ":" + String.format("%01d", millis);
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int minute = calendar.get(Calendar.MINUTE);
+//            String time = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
+            String time = hour + ":" + String.format("%02d", minute);
             // TextViewに表示させる
             timeTextView.setText(time);
 //            System.out.println(String.format("%06d", 1));

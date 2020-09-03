@@ -41,14 +41,14 @@ public class PushAlarm extends Service {
         return START_STICKY;
     }
 //
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//
-//        if (mp.isPlaying()) {
-//            mp.stop();
-//        }
-//
-//        Log.d(TAG, "onDestroy");
-//    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (mp.isPlaying()) {
+            mp.stop();
+        }
+
+        Log.d(TAG, "onDestroy");
+    }
 }
