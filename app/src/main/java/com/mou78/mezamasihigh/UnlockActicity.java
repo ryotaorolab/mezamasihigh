@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebResourceRequest;
@@ -26,6 +27,12 @@ public class UnlockActicity extends AppCompatActivity {
         setContentView(R.layout.activity_unlock_acticity);
 
         setTitle("今日の役立つ情報");
+        //目覚まし停止
+        if (Build.VERSION.SDK_INT >= 29) {
+            stopService(new Intent(getApplicationContext(), PushAlarm.class));
+        } else { //Android8.0以下の端末での動作
+
+        }
 
         WebView webView1 = (WebView)findViewById(R.id.webView);
         webView1.setWebViewClient(new WebViewClient() {

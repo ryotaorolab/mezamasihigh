@@ -38,16 +38,14 @@ public class AlarmActivity extends AppCompatActivity {
         setTitle("さあ！起きましょう！");
         //通知のaramを止める
         if (Build.VERSION.SDK_INT >= 29) {
-            stopService(new Intent(getApplicationContext(), PushAlarm.class));
+
         } else { //Android8.0以下の端末での動作
-
+            // 音楽の読み込み
+            p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
+            // 連続再生設定
+            p.setLooping(true);
+            p.start(); // 再生
         }
-
-        // 音楽の読み込み
-        p = MediaPlayer.create(getApplicationContext(), R.raw.morning);
-        // 連続再生設定
-        p.setLooping(true);
-        p.start(); // 再生
 
         //振動
         mVibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
@@ -115,7 +113,11 @@ public class AlarmActivity extends AppCompatActivity {
 
             if (seikai == 6) {
                 //目覚まし停止
-                p.stop();
+                if (Build.VERSION.SDK_INT >= 29) {
+
+                } else { //Android8.0以下の端末での動作
+                    p.stop();
+                }
                 //振動の停止
                 mVibrator.cancel();
                 //解除後の画面に移行
@@ -147,7 +149,11 @@ public class AlarmActivity extends AppCompatActivity {
 
             if (seikai == 6) {
                 //目覚まし停止
-                p.stop();
+                if (Build.VERSION.SDK_INT >= 29) {
+
+                } else { //Android8.0以下の端末での動作
+                    p.stop();
+                }
                 //振動の停止
                 mVibrator.cancel();
                 //解除後の画面に移行
@@ -177,7 +183,11 @@ public class AlarmActivity extends AppCompatActivity {
 
             if (seikai == 6) {
                 //目覚まし停止
-                p.stop();
+                if (Build.VERSION.SDK_INT >= 29) {
+
+                } else { //Android8.0以下の端末での動作
+                    p.stop();
+                }
                 //振動の停止
                 mVibrator.cancel();
                 //解除後の画面に移行
@@ -206,7 +216,11 @@ public class AlarmActivity extends AppCompatActivity {
 
             if (seikai == 6) {
                 //目覚まし停止
-                p.stop();
+                if (Build.VERSION.SDK_INT >= 29) {
+
+                } else { //Android8.0以下の端末での動作
+                    p.stop();
+                }
                 //振動の停止
                 mVibrator.cancel();
                 //解除後の画面に移行
@@ -231,9 +245,14 @@ public class AlarmActivity extends AppCompatActivity {
     // アプリ終了時に実行
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        p.release();// メモリの解放
-        p = null; // 音楽プレーヤーを破棄
+        //目覚まし停止
+        if (Build.VERSION.SDK_INT >= 29) {
+
+        } else { //Android8.0以下の端末での動作
+            super.onDestroy();
+            p.release();// メモリの解放
+            p = null; // 音楽プレーヤーを破棄
+        }
     }
 
     //help画面に移行

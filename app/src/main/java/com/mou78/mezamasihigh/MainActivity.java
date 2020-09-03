@@ -22,6 +22,9 @@ import android.widget.Toast;
 import java.sql.Time;
 import java.util.Calendar;
 
+import static android.icu.text.DateFormat.HOUR;
+import static android.icu.text.DateFormat.HOUR_OF_DAY1_FIELD;
+import static android.icu.text.DateFormat.MINUTE;
 import static android.system.Os.remove;
 import static androidx.core.os.LocaleListCompat.create;
 
@@ -93,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
             //カレンダー型を精製して時間を取り出す。
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(millis);
-//            String hour = ;
-//            String minute = ;
+//            String hour = HOUR;
+//            String minute = MINUTE;
             String time = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
-//            String time = hour + ":" + String.format("%05d", millis);
+//            String time = hour + ":" + String.format("%01d", millis);
             // TextViewに表示させる
             timeTextView.setText(time);
 //            System.out.println(String.format("%06d", 1));
