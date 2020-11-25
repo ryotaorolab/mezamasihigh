@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public  void Testaram (View view) {
 
         // 音楽の読み込み
