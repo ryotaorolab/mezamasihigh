@@ -125,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void Usermanual(View view) {
+        Intent intent = new Intent(MainActivity.this, usermanual.class);
+        startActivity(intent);
+    }
+
 
     public  void Testaram (View view) {
 

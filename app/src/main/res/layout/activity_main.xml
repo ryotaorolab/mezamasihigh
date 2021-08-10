@@ -51,130 +51,85 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     ]]>
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="#FFFFFF"
+        android:layout_width="124dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/ic_changetime"
         android:backgroundTint="#B5D8263B"
         android:onClick="release"
         android:text="削除"
         android:textColor="#FDFDFD"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changetime" />
+        app:layout_constraintBottom_toBottomOf="@+id/changetime"
+        app:layout_constraintStart_toEndOf="@+id/changetime"
+        app:layout_constraintTop_toTopOf="@+id/changetime"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/changetime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="#F6F6F6"
-        android:backgroundTint="#FFFFFF"
+        android:layout_width="124dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/ic_changetime"
+        android:backgroundTint="#62B502"
         android:onClick="setTime"
         android:text="時間を変更"
-        android:textColor="#323232"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/timeTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/timeTextView" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="55dp"
-        android:text="端末の音量に依存してアラームが鳴ります"
-        android:textColor="#F6F6F6"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toStartOf="@+id/button8"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button8"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="#902196F3"
+        android:layout_width="124dp"
+        android:layout_height="124dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/ic_changetime"
+        android:backgroundTint="#31589C"
         android:onClick="Testaram"
         android:text="テスト再生"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
-
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:fillViewport="true"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:onClick="Announce"
-                    app:srcCompat="@drawable/guide3" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/guide1" />
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/guide2" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintStart_toStartOf="@+id/changetime" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="セットされた時間"
         android:textColor="#FDFDFD"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/timeTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/timeTextView"
         app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
 
     <TextView
@@ -182,12 +137,40 @@
         android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="9:41"
         android:textColor="#FDFDFD"
         android:textSize="70sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="124dp"
+        android:layout_height="124dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/ic_changetime"
+        android:backgroundTint="#535250"
+        android:onClick="Announce"
+        android:text="【重要】\nAndroid10以降\nをご利用の方へ"
+        android:textColor="#FBFBFB"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/button8"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="124dp"
+        android:layout_height="124dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/ic_changetime"
+        android:backgroundTint="#A38800"
+        android:onClick="Usermanual"
+        android:text="使い方"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="@+id/button4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
